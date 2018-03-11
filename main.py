@@ -1,5 +1,6 @@
-
+from urllib.request import urlopen
 
 if __name__ == "__main__":
-	print("hello world!")
-	
+	url = input("gimme dat newz ")
+	content = urlopen(url)
+	print(content.read())
