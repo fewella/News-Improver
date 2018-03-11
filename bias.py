@@ -140,3 +140,18 @@ def insertBias(news, initial, target):
 
 	for adj in adjectives:
 		separatedText[adj[1]] = adj[0][0]
+
+	oldText = word_tokenize(news)
+	index = 0
+	foundSpace = 1
+	betterNews = news
+	for i in range(len(betterNews)):
+		if foundSpace == 1:
+			if betterNews[i:i+1] != '\"':
+				betterNews = betterNews[:i] + separatedText[index] + betterNews[i + len(oldText[index])]
+				foundSpace = 0
+
+		elif betterNews[i:i+1] == ' ':
+			foundSpace = 1
+			index += 1
+	return betterNews
